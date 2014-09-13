@@ -1,61 +1,34 @@
 django_tutorial Cookbook
 ========================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook deploys the django_tutorial sample Django app from
+https://github.com/m01/django_tutorial
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+#### OS
+Tested only on Ubuntu 14.04, but there's not much platform-specific stuff
+in this cookbook.
 
-e.g.
 #### packages
-- `toaster` - django_tutorial needs toaster to brown your bagel.
+- `application` v3.0 - The overall web application cookbook
+- `application_python` - For deploying django webapps using gunicorn
+- `application_nginx` - For proxying requests to gunicorn
+- `database` - For setting up MySQL
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
-
-e.g.
-#### django_tutorial::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['django_tutorial']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+None
 
 Usage
 -----
-#### django_tutorial::default
-TODO: Write usage instructions for each cookbook.
+Just edit the default.rb recipe to suit your needs.
 
-e.g.
-Just include `django_tutorial` in your node's `run_list`:
+There are probably more elegant ways to do things of course...
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[django_tutorial]"
-  ]
-}
-```
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
 
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -65,4 +38,5 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+License: MIT
+Authors: Michiel
