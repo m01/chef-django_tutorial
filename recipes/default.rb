@@ -82,6 +82,8 @@ application 'django_tutorial' do
   migrate true
 
   gunicorn do
+    # what app_module :django does seems to be deprecated by the Django people,
+    # and didn't work with Django 1.7.
     app_module "django_tutorial.wsgi"
     port 8001
     autostart true
