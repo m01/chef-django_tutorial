@@ -5,7 +5,7 @@
 # Copyright 2014, Michiel
 #
 
-# directories and users
+# -- directories and users --
 directory "/srv/webapps" do
 end
 
@@ -18,15 +18,19 @@ directory "/srv/webapps/django_tutorial" do
   owner "djtut"
   group "djtut"
 end
+
 directory "/srv/webapps/django_tutorial/shared" do
   owner "djtut"
   group "djtut"
 end
 
-# database setup
+# -- database setup --
 include_recipe "database::mysql"
 include_recipe "mysql::server"
 
+# use 127.0.0.1 to force IP-based connection, rather than unix domain socket
+# The domain socket somehow didn't work out of the box with whatever
+# include_recipe "mysql::server" did.
 mysql_connection_info = {
   :host     => '127.0.0.1',
   :username => 'root',
@@ -47,6 +51,8 @@ mysql_database_user 'django_tut_user' do
   action [:create, :grant]
 end
 
+# -- webapp --
+
 # General application documentation:
 # https://supermarket.getchef.com/cookbooks/application/versions/3.0.0#readme
 application 'django_tutorial' do
@@ -62,7 +68,6 @@ application 'django_tutorial' do
   # django & gunicorn documentation:
   # https://supermarket.getchef.com/cookbooks/application_python
   django do
-    # defaults work fine
     collectstatic true
     debug true
     database do
@@ -78,7 +83,6 @@ application 'django_tutorial' do
 
   gunicorn do
     app_module "django_tutorial.wsgi"
-    # defaults
     port 8001
     autostart true
     logfile "/srv/webapps/django_tutorial/gunicorn.log"
